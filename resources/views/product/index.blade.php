@@ -8,7 +8,7 @@
         <h2>商品列表</h2>
         <hr>
         <!-- 搜索表单 -->
-        <form action="{{ route('product.index') }}" method="GET" class="mb-3">
+        <form action="{{ route('product.search') }}" method="GET" class="mb-3">
             <div class="input-group">
                 <input type="text" name="search" class="form-control" placeholder="搜索商品" value="{{ request('search') }}">
                 <button type="submit" class="btn btn-primary">搜索</button>

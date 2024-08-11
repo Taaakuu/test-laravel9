@@ -44,5 +44,5 @@ Route::prefix('product')->group(function () {
 
     //搜索商品
     Route::get('index', [ProductController::class, 'index'])->name('product.index');
-    Route::get('/product/search', [ProductController::class, 'index'])->name('product.search');
+    Route::get('/product/search', [ProductController::class, 'search'])->name('product.search');
 

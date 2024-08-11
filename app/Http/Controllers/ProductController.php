@@ -58,23 +58,12 @@ class ProductController extends Controller
      *
      * @return Factory|View|Application
      */
-    public function index(): Factory|View|Application
+    public function index(Request $request): \Illuminate\View\View
     {
+
         $products = Product::all();
-        return view('product.index', ['products' => $products]);
 
-        $query = $request->input('search');
-
-        if ($query) {
-            $products = Product::where('name', 'like', "%{$query}%")
-                ->orWhere('description', 'like', "%{$query}%")
-                ->get();
-
-            return view('product.search', compact('products', 'query'));
-        } else {
-            $products = Product::all();
-            return view('product.index', compact('products'));
-        }
+        return view('product.index', compact('products'));
     }
 
     /**
@@ -143,6 +132,27 @@ class ProductController extends Controller
         $product->save();
 
         return redirect()->route('product.index');
+    }
+
+    /**
+     * 搜索商品
+     *
+     * @param Request $request
+     * @return Application|Factory|View|void
+     */
+    public function search(Request $request)
+    {
+        // 处理搜索请求，根据输入搜索产品
+        // 然后返回搜索结果页面
+        $query = $request->input('search');
+
+        if ($query) {
+            $products = Product::where('name', 'like', "%{$query}%")
+                ->orWhere('description', 'like', "%{$query}%")
+                ->get();
+
+            return view('product.search', compact('products', 'query'));
+        }
     }
 
 
