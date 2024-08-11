@@ -63,6 +63,9 @@ class ProductController extends Controller
 
         $products = Product::all();
 
+        // 使用分页，每页显示10个商品
+        $products = Product::paginate(10);
+
         return view('product.index', compact('products'));
     }
 
